@@ -1,0 +1,37 @@
+/* for development only - check layout */
+header, div, main, nav, aside, footer {
+  border: 1px solid red;
+}
+
+body {
+  display: flex;
+  text-align: center;
+  min-height: 100vh;
+  flex-direction: column;
+  font-family: Verdana, sans-serif;
+}
+
+.container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+
+main {
+  flex: 1;
+}
+
+nav {
+  order: -1;
+}
+
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+    flex: 1;
+  }
+  nav, aside {
+    flex: 0 0 12em;
+  }
+}

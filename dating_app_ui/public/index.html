@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app='dating_app'>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script type="text/javascript" src='app.js'></script>
+  </head>
+  <body ng-controller='mainController as main'>
+    <header>
+      <h2>Dating App</h2>
+    </header>
+
+    <div class="container">
+
+      <main>
+        <img id='main-img' src="https://secure.polyvoreimg.com/cgi/img-thing/size/l/tid/25090360.jpg" alt="">
+        <img id='main-img-2' src="https://secure.polyvoreimg.com/cgi/img-thing/size/l/tid/25090360.jpg" alt="">
+
+        <button type="button" ng-if='main.checkImgs();' ng-click='main.chooseFate();' ng-hide='main.result'>Match</button>
+
+        <div ng-if='main.result'>
+          {{main.result}}
+        </div>
+
+      </main>
+
+      <nav>
+        <div ng-repeat='dater in main.daters track by $index' ng-if='$index < 3'>
+          <img ng-mouseover='main.moveNavImg($index);' ng-src="{{dater.img}}"/>
+          <p>{{dater.name}}</p>
+          <p>Age: {{dater.age}}</p>
+          <p>{{dater.gender}}</p>
+        </div>
+      </nav>
+
+      <aside>
+        <div ng-repeat='dater in main.daters track by $index' ng-if='$index >= 3 && $index <= 5'>
+          <img ng-mouseover='main.moveAsideImg($index);' ng-src="{{dater.img}}"/>
+          <p>{{dater.name}}</p>
+          <p>Age: {{dater.age}}</p>
+          <p>{{dater.gender}}</p>
+        </div>
+      </aside>
+
+    </div>
+
+    <footer>
+      <h2>Add a Dater</h2>
+      <form ng-submit='main.createDater()'>
+        <input type="text" ng-model='main.newDater.name' placeholder='Name'/>
+        <input type="text" ng-model='main.newDater.age' placeholder='Age'/>
+        <input type="text" ng-model='main.newDater.gender' placeholder='Gender'/>
+        <input type="text" ng-model='main.newDater.img' placeholder='Img URL'/>
+        <input type='submit' value='Create Dater'/>
+      </form>
+    </footer>
+
+  </body>
+</html>
